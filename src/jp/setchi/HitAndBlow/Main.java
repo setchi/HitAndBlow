@@ -78,18 +78,18 @@ public class Main {
 		return false;
 	}
 	
-	private static HitAndBlow countHitsAndBlows(String a, String b) {
+	private static HitAndBlow countHitsAndBlows(String answerA, String answerB) {
 		int countHits = 0;
 		int countBlows = 0;
 		
 		for (int i = 0; i < NUMBER_OF_DIGITS; i++) {
-			if (a.charAt(i) == b.charAt(i)) {
+			if (answerA.charAt(i) == answerB.charAt(i)) {
 				countHits++;
 				continue;
 			}
 			
 			for (int j = 0; j < NUMBER_OF_DIGITS; j++) {
-				if (a.charAt(i) == b.charAt(j)) {
+				if (answerA.charAt(i) == answerB.charAt(j)) {
 					countBlows++;
 				}
 			}
