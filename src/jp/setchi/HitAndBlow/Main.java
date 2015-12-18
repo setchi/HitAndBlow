@@ -1,16 +1,16 @@
 package jp.setchi.HitAndBlow;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Main {
+	
 	private static final int NUMBER_OF_DIGITS = 4;
 	
 	public static void main(String[] args) {
-		String expectedAnswer = generateRandomAnswer(NUMBER_OF_DIGITS);
+		String expectedAnswer = new RandomNumericStringGenerator()
+				.generate(NUMBER_OF_DIGITS);
 		
 		try (Scanner scanner = new Scanner(System.in)) {
 			
@@ -34,34 +34,16 @@ public class Main {
 					continue;
 				}
 				
-				HitAndBlow result = countHitsAndBlows(answer, expectedAnswer);
-				System.out.println("ヒット：" + result.getHits() +  ", ブロウ：" + result.getBlows());
+				HitAndBlow hitAndBlow = new HitAndBlow(answer, expectedAnswer);
+				System.out.println("ヒット：" + hitAndBlow.getHits() +  ", ブロウ：" + hitAndBlow.getBlows());
 				
-				if (result.getHits() == NUMBER_OF_DIGITS) {
+				if (answer.equals(expectedAnswer)) {
 					System.out.println(countPlay + "回目でクリア！");
 					System.out.println("おめでとうございます！");
 					break;
 				}
 			}
 		}
-	}
-	
-	private static String generateRandomAnswer(int digits) {
-		LinkedList<Integer> unusedNumbers = new LinkedList<>();
-		
-		for (int i = 0; i < 10; i++) {
-			unusedNumbers.add(i);
-		}
-		
-		char[] answer = new char[digits];
-		Random random = new Random();
-		
-		for (int i = 0; i < digits; i++) {
-			int number = unusedNumbers.remove(random.nextInt(unusedNumbers.size()));
-			answer[i] = (char)('0' + number);
-		}
-		
-		return String.valueOf(answer);
 	}
 	
 	private static Boolean isDuplicated(String answer) {
@@ -76,38 +58,5 @@ public class Main {
 		}
 
 		return false;
-	}
-	
-	private static HitAndBlow countHitsAndBlows(String answerA, String answerB) {
-		int countHits = 0;
-		int countBlows = 0;
-		
-		for (int i = 0; i < NUMBER_OF_DIGITS; i++) {
-			if (answerA.charAt(i) == answerB.charAt(i)) {
-				countHits++;
-				continue;
-			}
-			
-			for (int j = 0; j < NUMBER_OF_DIGITS; j++) {
-				if (answerA.charAt(i) == answerB.charAt(j)) {
-					countBlows++;
-				}
-			}
-		}
-		
-		return new HitAndBlow(countHits, countBlows);
-	}
-	
-	private static class HitAndBlow {
-		private final int hits;
-		private final int blows;
-		
-		public HitAndBlow(int hits, int blows) {
-			this.hits = hits;
-			this.blows = blows;
-		}
-		
-		public int getHits() { return hits; }
-		public int getBlows() { return blows; }
 	}
 }
