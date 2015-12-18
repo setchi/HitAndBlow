@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Main {
-	static final int NUMBER_OF_DIGITS = 4;
+	private static final int NUMBER_OF_DIGITS = 4;
 	
 	public static void main(String[] args) {
 		String expectedAnswer = generateRandomAnswer(NUMBER_OF_DIGITS);
@@ -46,7 +46,7 @@ public class Main {
 		}
 	}
 	
-	static String generateRandomAnswer(int digits) {
+	private static String generateRandomAnswer(int digits) {
 		LinkedList<Integer> unusedNumbers = new LinkedList<>();
 		
 		for (int i = 0; i < 10; i++) {
@@ -64,7 +64,7 @@ public class Main {
 		return String.valueOf(answer);
 	}
 	
-	static Boolean isDuplicated(String answer) {
+	private static Boolean isDuplicated(String answer) {
 		Set<Character> existedCharacters = new HashSet<>();
 		
 		for (char c : answer.toCharArray()) {
@@ -78,7 +78,7 @@ public class Main {
 		return false;
 	}
 	
-	static HitAndBlow countHitsAndBlows(String a, String b) {
+	private static HitAndBlow countHitsAndBlows(String a, String b) {
 		int countHits = 0;
 		int countBlows = 0;
 		
@@ -98,9 +98,9 @@ public class Main {
 		return new HitAndBlow(countHits, countBlows);
 	}
 	
-	static class HitAndBlow {
-		final int hits;
-		final int blows;
+	private static class HitAndBlow {
+		private final int hits;
+		private final int blows;
 		
 		public HitAndBlow(int hits, int blows) {
 			this.hits = hits;
