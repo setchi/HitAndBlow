@@ -1,16 +1,13 @@
 package jp.setchi.HitAndBlow;
 
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Main {
 	
 	private static final int NUMBER_OF_DIGITS = 4;
 	
 	public static void main(String[] args) {
-		String expectedAnswer = new RandomNumericStringGenerator()
-				.generate(NUMBER_OF_DIGITS);
+		String expectedAnswer = StringUtility.generateDistinctRandomNumeric(NUMBER_OF_DIGITS);
 		
 		try (Scanner scanner = new Scanner(System.in)) {
 			
@@ -29,7 +26,7 @@ public class Main {
 					continue;
 				}
 				
-				if (isDuplicated(answer)) {
+				if (!StringUtility.isDistinct(answer)) {
 					System.out.println("入力に重複があります。");
 					continue;
 				}
@@ -44,19 +41,5 @@ public class Main {
 				}
 			}
 		}
-	}
-	
-	private static Boolean isDuplicated(String answer) {
-		Set<Character> existedCharacters = new HashSet<>();
-		
-		for (char c : answer.toCharArray()) {
-			if (existedCharacters.contains(c)) {
-				return true;
-			}
-			
-			existedCharacters.add(c);
-		}
-
-		return false;
 	}
 }

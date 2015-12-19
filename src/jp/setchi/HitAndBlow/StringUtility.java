@@ -1,11 +1,33 @@
 package jp.setchi.HitAndBlow;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Set;
 
-public class RandomNumericStringGenerator {
+public class StringUtility {
 	
-	public String generate(int digits) {
+	private StringUtility() {}
+	
+	public static Boolean isDistinct(String str) {
+		if (str == null) {
+			throw new IllegalArgumentException("ˆø”‚ªnull‚Å‚·B");
+		}
+		
+		Set<Character> existedCharacters = new HashSet<>();
+		
+		for (char c : str.toCharArray()) {
+			if (existedCharacters.contains(c)) {
+				return false;
+			}
+			
+			existedCharacters.add(c);
+		}
+
+		return true;
+	}
+	
+	public static String generateDistinctRandomNumeric(int digits) {
 		if (digits < 0 || 10 < digits) {
 			throw new IllegalArgumentException("Œ…”‚Í0~10‚Ì”ÍˆÍ‚Åw’è‚µ‚Ä‚­‚¾‚³‚¢: " + digits);
 		}
