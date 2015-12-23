@@ -14,7 +14,7 @@ public class StringUtility {
 			throw new IllegalArgumentException("ˆø”‚ªnull‚Å‚·B");
 		}
 		
-		Set<Character> existedCharacters = new HashSet<>();
+		final Set<Character> existedCharacters = new HashSet<>();
 		
 		for (char c : str.toCharArray()) {
 			if (existedCharacters.contains(c)) {
@@ -32,14 +32,14 @@ public class StringUtility {
 			throw new IllegalArgumentException("Œ…”‚Í0~10‚Ì”ÍˆÍ‚Åw’è‚µ‚Ä‚­‚¾‚³‚¢: " + digits);
 		}
 		
-		LinkedList<Integer> unusedNumbers = new LinkedList<>();
+		final LinkedList<Integer> unusedNumbers = new LinkedList<>();
 		
 		for (int i = 0; i < 10; i++) {
 			unusedNumbers.add(i);
 		}
 		
-		char[] result = new char[digits];
-		Random random = new Random();
+		final char[] result = new char[digits];
+		final Random random = new Random();
 		
 		for (int i = 0; i < digits; i++) {
 			int number = unusedNumbers.remove(random.nextInt(unusedNumbers.size()));

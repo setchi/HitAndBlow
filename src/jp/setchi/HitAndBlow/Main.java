@@ -7,14 +7,14 @@ public class Main {
 	private static final int NUMBER_OF_DIGITS = 4;
 	
 	public static void main(String[] args) {
-		String expectedAnswer = StringUtility.generateDistinctRandomNumeric(NUMBER_OF_DIGITS);
+		final String expectedAnswer = StringUtility.generateDistinctRandomNumeric(NUMBER_OF_DIGITS);
 		
 		try (Scanner scanner = new Scanner(System.in)) {
 			
 			for (int countPlay = 1; ; countPlay++) {
 				
 				System.out.println(NUMBER_OF_DIGITS + "桁の数値を入力してください。(" + countPlay + "回目)");
-				String answer = scanner.next();
+				final String answer = scanner.next();
 				
 				if (answer.length() != NUMBER_OF_DIGITS) {
 					System.out.println("入力が" + NUMBER_OF_DIGITS + "桁ではありません。");
@@ -31,7 +31,7 @@ public class Main {
 					continue;
 				}
 				
-				HitAndBlow hitAndBlow = new HitAndBlow(answer, expectedAnswer);
+				final HitAndBlow hitAndBlow = new HitAndBlow(answer, expectedAnswer);
 				System.out.println("ヒット：" + hitAndBlow.getHits() +  ", ブロウ：" + hitAndBlow.getBlows());
 				
 				if (answer.equals(expectedAnswer)) {

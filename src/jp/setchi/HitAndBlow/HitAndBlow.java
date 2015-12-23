@@ -21,7 +21,7 @@ public class HitAndBlow {
 		
 		int countHits = 0;
 		int countBlows = 0;
-		int digits = answerA.length();
+		final int digits = answerA.length();
 		
 		for (int i = 0; i < digits; i++) {
 			if (answerA.charAt(i) == answerB.charAt(i)) {
