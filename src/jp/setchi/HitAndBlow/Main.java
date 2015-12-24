@@ -26,7 +26,7 @@ public class Main {
 					continue;
 				}
 				
-				if (!StringUtility.isDistinct(answer)) {
+				if (!StringUtility.isDistinctChars(answer)) {
 					System.out.println("入力に重複があります。");
 					continue;
 				}

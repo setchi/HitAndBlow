@@ -32,6 +32,7 @@ public class HitAndBlow {
 			for (int j = 0; j < digits; j++) {
 				if (answerA.charAt(i) == answerB.charAt(j)) {
 					countBlows++;
+					continue;
 				}
 			}
 		}

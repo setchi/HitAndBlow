@@ -1,15 +1,16 @@
 package jp.setchi.HitAndBlow;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.List;
 import java.util.Set;
 
 public class StringUtility {
 	
 	private StringUtility() {}
 	
-	public static Boolean isDistinct(String str) {
+	public static Boolean isDistinctChars(String str) {
 		if (str == null) {
 			throw new IllegalArgumentException("ˆø”‚ªnull‚Å‚·B");
 		}
@@ -20,32 +21,27 @@ public class StringUtility {
 			if (existedCharacters.contains(c)) {
 				return false;
 			}
-			
 			existedCharacters.add(c);
 		}
-
+		
 		return true;
 	}
 	
 	public static String generateDistinctRandomNumeric(int digits) {
-		if (digits < 0 || 10 < digits) {
-			throw new IllegalArgumentException("Œ…”‚Í0~10‚Ì”ÍˆÍ‚Åw’è‚µ‚Ä‚­‚¾‚³‚¢: " + digits);
+		final List<Integer> numbers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+		
+		if (digits < 0 || numbers.size() < digits) {
+			throw new IllegalArgumentException(
+					"Œ…”‚Í0~" + numbers.size() + "‚Ì”ÍˆÍ‚Åw’è‚µ‚Ä‚­‚¾‚³‚¢: " + digits);
 		}
 		
-		final LinkedList<Integer> unusedNumbers = new LinkedList<>();
+		Collections.shuffle(numbers);
 		
-		for (int i = 0; i < 10; i++) {
-			unusedNumbers.add(i);
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int number : numbers.subList(0, digits)) {
+			stringBuilder.append(number);
 		}
 		
-		final char[] result = new char[digits];
-		final Random random = new Random();
-		
-		for (int i = 0; i < digits; i++) {
-			int number = unusedNumbers.remove(random.nextInt(unusedNumbers.size()));
-			result[i] = (char)('0' + number);
-		}
-		
-		return String.valueOf(result);
+		return stringBuilder.toString();
 	}
 }
