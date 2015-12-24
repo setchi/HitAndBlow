@@ -37,7 +37,7 @@ public class StringUtility {
 		
 		Collections.shuffle(numbers);
 		
-		StringBuilder stringBuilder = new StringBuilder();
+		final StringBuilder stringBuilder = new StringBuilder();
 		for (int number : numbers.subList(0, digits)) {
 			stringBuilder.append(number);
 		}
